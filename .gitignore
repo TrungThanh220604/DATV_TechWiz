@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -12,3 +12,8 @@
 /TechWiz/TechWiz/obj/TechWiz.csproj.nuget.dgspec.json
 /TechWiz/TechWiz/obj/TechWiz.csproj.nuget.g.props
 /TechWiz/TechWiz/obj/TechWiz.csproj.nuget.g.targets
+TechWiz/.vs/TechWiz/FileContentIndex/009755c7-9932-4d50-b984-569a62b7dc51.vsidx
+TechWiz/.vs/TechWiz/FileContentIndex/096c19fe-ba0f-4c31-9a9b-018aa4807e8e.vsidx
+TechWiz/.vs/TechWiz/FileContentIndex/11adee28-dec2-4a2d-88f5-3a4c14d9a8c8.vsidx
+TechWiz/.vs/TechWiz/FileContentIndex/231e8eb7-56db-43c3-baee-c9d1e9c7aff3.vsidx
+TechWiz/.vs/TechWiz/FileContentIndex/c8de982d-9796-41fa-8a6f-215b81f0a5f8.vsidx
