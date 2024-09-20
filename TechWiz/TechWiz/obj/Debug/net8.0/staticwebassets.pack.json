@@ -5,12 +5,28 @@
       "PackagePath": "staticwebassets\\TechWiz.bundle.scp.css"
     },
     {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\AdminDashBoard.css",
+      "PackagePath": "staticwebassets\\css\\AdminDashBoard.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\AdminLayout.css",
+      "PackagePath": "staticwebassets\\css\\AdminLayout.css"
+    },
+    {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageAdmin\\people.png",
+      "PackagePath": "staticwebassets\\imageAdmin\\people.png"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\AdminLayout.js",
+      "PackagePath": "staticwebassets\\js\\AdminLayout.js"
     },
     {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\site.js",

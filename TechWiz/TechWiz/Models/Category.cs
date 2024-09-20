@@ -11,8 +11,7 @@ namespace TechWiz.Models
         public string? Note { get; set; }
         public double? Budget { get; set; }
         [ForeignKey("Trip")]
-        public int trip_id { get; set; }
-        public Trip trip { get; set; }
+        public Trip? trip { get; set; }
         public ICollection<Items>? Itemss { get; set; }
 
     }

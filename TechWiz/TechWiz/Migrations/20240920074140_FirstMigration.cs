@@ -84,8 +84,7 @@ namespace TechWiz.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     link_avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    currency_id = table.Column<int>(type: "int", nullable: true),
-                    currencyId = table.Column<int>(type: "int", nullable: false),
+                    Currency = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -105,11 +104,10 @@ namespace TechWiz.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Currencies_currencyId",
-                        column: x => x.currencyId,
+                        name: "FK_AspNetUsers_Currencies_Currency",
+                        column: x => x.Currency,
                         principalTable: "Currencies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -119,18 +117,16 @@ namespace TechWiz.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     link_pic = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    des_id = table.Column<int>(type: "int", nullable: true),
-                    destinationId = table.Column<int>(type: "int", nullable: false)
+                    Destination = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Galleries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Galleries_Destinations_destinationId",
-                        column: x => x.destinationId,
+                        name: "FK_Galleries_Destinations_Destination",
+                        column: x => x.Destination,
                         principalTable: "Destinations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -158,8 +154,8 @@ namespace TechWiz.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -203,8 +199,8 @@ namespace TechWiz.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -228,25 +224,22 @@ namespace TechWiz.Migrations
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     EndTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Budget = table.Column<double>(type: "float", nullable: true),
-                    des_id = table.Column<int>(type: "int", nullable: true),
-                    destinationId = table.Column<int>(type: "int", nullable: false),
-                    user_id = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    userId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    Destination = table.Column<int>(type: "int", nullable: true),
+                    User = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Trips", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Trips_AspNetUsers_userId",
-                        column: x => x.userId,
+                        name: "FK_Trips_AspNetUsers_User",
+                        column: x => x.User,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Trips_Destinations_destinationId",
-                        column: x => x.destinationId,
+                        name: "FK_Trips_Destinations_Destination",
+                        column: x => x.Destination,
                         principalTable: "Destinations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -258,18 +251,16 @@ namespace TechWiz.Migrations
                     CateName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Budget = table.Column<double>(type: "float", nullable: true),
-                    trip_id = table.Column<int>(type: "int", nullable: false),
-                    tripId = table.Column<int>(type: "int", nullable: false)
+                    Trip = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Categories_Trips_tripId",
-                        column: x => x.tripId,
+                        name: "FK_Categories_Trips_Trip",
+                        column: x => x.Trip,
                         principalTable: "Trips",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -282,26 +273,22 @@ namespace TechWiz.Migrations
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Budget = table.Column<double>(type: "float", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    trip_id = table.Column<int>(type: "int", nullable: false),
-                    tripId = table.Column<int>(type: "int", nullable: false),
-                    cate_id = table.Column<int>(type: "int", nullable: true),
-                    categoryId = table.Column<int>(type: "int", nullable: false)
+                    Trip = table.Column<int>(type: "int", nullable: true),
+                    Category = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Itemss", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Itemss_Categories_categoryId",
-                        column: x => x.categoryId,
+                        name: "FK_Itemss_Categories_Category",
+                        column: x => x.Category,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Itemss_Trips_tripId",
-                        column: x => x.tripId,
+                        name: "FK_Itemss_Trips_Trip",
+                        column: x => x.Trip,
                         principalTable: "Trips",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -309,8 +296,8 @@ namespace TechWiz.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "7ac52904-f496-43ec-84e2-0bc686d924ed", null, "client", "client" },
-                    { "84bf2aaa-6620-4a5d-8444-e4af45493d27", null, "admin", "admin" }
+                    { "51dad253-2808-4ed3-8def-2bf2d2ae2c6d", null, "client", "client" },
+                    { "fe078b37-ff09-4884-9daf-2122a32075df", null, "admin", "admin" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -346,9 +333,9 @@ namespace TechWiz.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_currencyId",
+                name: "IX_AspNetUsers_Currency",
                 table: "AspNetUsers",
-                column: "currencyId");
+                column: "Currency");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -358,34 +345,34 @@ namespace TechWiz.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_tripId",
+                name: "IX_Categories_Trip",
                 table: "Categories",
-                column: "tripId");
+                column: "Trip");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Galleries_destinationId",
+                name: "IX_Galleries_Destination",
                 table: "Galleries",
-                column: "destinationId");
+                column: "Destination");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Itemss_categoryId",
+                name: "IX_Itemss_Category",
                 table: "Itemss",
-                column: "categoryId");
+                column: "Category");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Itemss_tripId",
+                name: "IX_Itemss_Trip",
                 table: "Itemss",
-                column: "tripId");
+                column: "Trip");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Trips_destinationId",
+                name: "IX_Trips_Destination",
                 table: "Trips",
-                column: "destinationId");
+                column: "Destination");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Trips_userId",
+                name: "IX_Trips_User",
                 table: "Trips",
-                column: "userId");
+                column: "User");
         }
 
         /// <inheritdoc />

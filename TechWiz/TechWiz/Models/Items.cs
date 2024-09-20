@@ -12,11 +12,9 @@ namespace TechWiz.Models
         public double? Budget { get; set; }
         public DateTime? Date { get; set; }
         [ForeignKey("Trip")]
-        public int trip_id { get; set; }
-        public Trip trip { get; set; }
+        public Trip? trip { get; set; }
 
         [ForeignKey("Category")]
-        public int? cate_id { get; set; }
-        public Category category { get; set; }
+        public Category? category { get; set; }
     }
 }

@@ -12,12 +12,10 @@ namespace TechWiz.Models
         public DateTime? EndTime { get; set;}
         public double? Budget { get; set; }
         [ForeignKey("Destination")]
-        public int? des_id { get; set; }
-        public Destination destination { get; set; }
+        public Destination? destination { get; set; }
 
         [ForeignKey("User")]
-        public string user_id { get; set; }
-        public User user { get; set; }
+        public User? user { get; set; }
 
         public ICollection<Category>? Categories { get; set; }
         public ICollection<Items>? Itemss { get; set; }

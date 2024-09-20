@@ -12,7 +12,7 @@ using TechWiz.Data;
 namespace TechWiz.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240920055700_FirstMigration")]
+    [Migration("20240920074140_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -54,13 +54,13 @@ namespace TechWiz.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "84bf2aaa-6620-4a5d-8444-e4af45493d27",
+                            Id = "fe078b37-ff09-4884-9daf-2122a32075df",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "7ac52904-f496-43ec-84e2-0bc686d924ed",
+                            Id = "51dad253-2808-4ed3-8def-2bf2d2ae2c6d",
                             Name = "client",
                             NormalizedName = "client"
                         });
@@ -119,10 +119,12 @@ namespace TechWiz.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -159,10 +161,12 @@ namespace TechWiz.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -189,15 +193,12 @@ namespace TechWiz.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("tripId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("trip_id")
+                    b.Property<int?>("Trip")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("tripId");
+                    b.HasIndex("Trip");
 
                     b.ToTable("Categories");
                 });
@@ -254,10 +255,7 @@ namespace TechWiz.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("des_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("destinationId")
+                    b.Property<int?>("Destination")
                         .HasColumnType("int");
 
                     b.Property<string>("link_pic")
@@ -265,7 +263,7 @@ namespace TechWiz.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("destinationId");
+                    b.HasIndex("Destination");
 
                     b.ToTable("Galleries");
                 });
@@ -281,6 +279,9 @@ namespace TechWiz.Migrations
                     b.Property<double?>("Budget")
                         .HasColumnType("float");
 
+                    b.Property<int?>("Category")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
@@ -290,23 +291,14 @@ namespace TechWiz.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("cate_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("categoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("tripId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("trip_id")
+                    b.Property<int?>("Trip")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("categoryId");
+                    b.HasIndex("Category");
 
-                    b.HasIndex("tripId");
+                    b.HasIndex("Trip");
 
                     b.ToTable("Itemss");
                 });
@@ -322,6 +314,9 @@ namespace TechWiz.Migrations
                     b.Property<double?>("Budget")
                         .HasColumnType("float");
 
+                    b.Property<int?>("Destination")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("EndTime")
                         .HasColumnType("datetime2");
 
@@ -331,24 +326,14 @@ namespace TechWiz.Migrations
                     b.Property<string>("TripName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("des_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("destinationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("userId")
+                    b.Property<string>("User")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("user_id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("destinationId");
+                    b.HasIndex("Destination");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("User");
 
                     b.ToTable("Trips");
                 });
@@ -364,6 +349,9 @@ namespace TechWiz.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Currency")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -405,16 +393,12 @@ namespace TechWiz.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("currencyId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("currency_id")
-                        .HasColumnType("int");
-
                     b.Property<string>("link_avatar")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Currency");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -423,8 +407,6 @@ namespace TechWiz.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("currencyId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -484,9 +466,7 @@ namespace TechWiz.Migrations
                 {
                     b.HasOne("TechWiz.Models.Trip", "trip")
                         .WithMany("Categories")
-                        .HasForeignKey("tripId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Trip");
 
                     b.Navigation("trip");
                 });
@@ -495,9 +475,7 @@ namespace TechWiz.Migrations
                 {
                     b.HasOne("TechWiz.Models.Destination", "destination")
                         .WithMany("Galleries")
-                        .HasForeignKey("destinationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Destination");
 
                     b.Navigation("destination");
                 });
@@ -506,15 +484,11 @@ namespace TechWiz.Migrations
                 {
                     b.HasOne("TechWiz.Models.Category", "category")
                         .WithMany("Itemss")
-                        .HasForeignKey("categoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Category");
 
                     b.HasOne("TechWiz.Models.Trip", "trip")
                         .WithMany("Itemss")
-                        .HasForeignKey("tripId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Trip");
 
                     b.Navigation("category");
 
@@ -525,13 +499,11 @@ namespace TechWiz.Migrations
                 {
                     b.HasOne("TechWiz.Models.Destination", "destination")
                         .WithMany("Trips")
-                        .HasForeignKey("destinationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Destination");
 
                     b.HasOne("TechWiz.Models.User", "user")
                         .WithMany("Trips")
-                        .HasForeignKey("userId");
+                        .HasForeignKey("User");
 
                     b.Navigation("destination");
 
@@ -542,9 +514,7 @@ namespace TechWiz.Migrations
                 {
                     b.HasOne("TechWiz.Models.Currency", "currency")
                         .WithMany("Users")
-                        .HasForeignKey("currencyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Currency");
 
                     b.Navigation("currency");
                 });
