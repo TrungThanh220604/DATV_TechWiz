@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TechWiz/.vs/TechWiz/v17/.suo
+/TechWiz/TechWiz/obj/Debug/net8.0/TechWiz.AssemblyInfo.cs
+/TechWiz/TechWiz/obj/Debug/net8.0/TechWiz.AssemblyInfoInputs.cache
+/TechWiz/TechWiz/obj/Debug/net8.0/TechWiz.assets.cache
+/TechWiz/TechWiz/obj/Debug/net8.0/TechWiz.GeneratedMSBuildEditorConfig.editorconfig
+/TechWiz/TechWiz/obj/project.assets.json
+/TechWiz/TechWiz/obj/project.nuget.cache
+/TechWiz/TechWiz/obj/TechWiz.csproj.nuget.dgspec.json
+/TechWiz/TechWiz/obj/TechWiz.csproj.nuget.g.props
+/TechWiz/TechWiz/obj/TechWiz.csproj.nuget.g.targets
