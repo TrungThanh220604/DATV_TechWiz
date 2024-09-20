@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+<link rel="stylesheet" href="~/css/PlanTrip.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="plan-trip">
+    <div class="plan-trip-main">
+        <div class="plan-trip-container">
+            <form action="">
+                <div class="trip-name">
+                    <p>Plan a new trip</p>
+                </div>
+                <div class="trip-form">
+                    <div class="trip-form-location">
+                        <label for="trip-location-input" class="trip-txt">Where to?</label>
+                        <input id="trip-location-input" type="text" name="trip-location-input" placeholder="e.g. Paris, Hawaii, VietNam" />
+                    </div>
+                    <p class="trip-txt">Dates (optional)</p>
+                    <div class="trip-form-date">
+                        <div class="date-picker">
+                            <label for="trip-start" class="date-icon">
+                                <i class="fa-regular fa-calendar-days"></i>
+                            </label>
+                            <input type="text" name="trip-start" id="trip-start" class="trip-date-input" readonly placeholder="Start date">
+                        </div>
+                        <div class="date-picker">
+                            <label for="trip-end" class="date-icon">
+                                <i class="fa-regular fa-calendar-days"></i>
+                            </label>
+                            <input type="text" name="trip-end" id="trip-end" class="trip-date-input" readonly placeholder="End date">
+                        </div>
+                    </div>
+                    <button type="submit" class="plan-trip-submit">Start planning</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#trip-start").datepicker();
+        $("#trip-end").datepicker();
+    });
+</script>

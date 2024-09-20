@@ -2,32 +2,50 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/LayoutLogin.cshtml";
 }
 
-
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email">Email</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="form-wrapper">
+        <h2>Sign Up</h2>
+        <form id="account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert" style="color:red"></div>
+            <div class="form-control">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true"  required/>
+                <label asp-for="Input.Email" class="form-label">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger" style="color:red"></span>
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.Password">Password</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            <div class="form-control">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true"  required/>
+                <label asp-for="Input.Password" class="form-label">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger" style="color:red"></span>
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            <div class="form-control">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true"  required/>
+                <label asp-for="Input.ConfirmPassword" class="form-label">Confirm Password</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger" style="color:red"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button id="login-submit" type="submit" style="margin-top:20px">Sign Up</button>
+            <div class="form-help">
+                <div style="display:flex">
+                    <p>
+                        <a asp-page="/" style="text-decoration:none">Back</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" style="text-decoration:none;margin-left:30px">Login</a>
+                    </p>
+                </div>
+            </div>
         </form>
     </div>
-</div>
+</body>
+</html>
+
 

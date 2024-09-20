@@ -1,0 +1,120 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    background-image: url('https://nextvacay.com/wp-content/uploads/2022/07/KW-why-travel-is-important.jpg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Plan strip */
+.plan-trip {
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+}
+
+    .plan-trip .plan-trip-main {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+        .plan-trip .plan-trip-main .plan-trip-container {
+            width: 100%;
+        }
+
+        .plan-trip .plan-trip-main .trip-name {
+            line-height: 1 !important;
+            font-weight: bold;
+            margin-bottom: 16px;
+            font-size: 2.25rem;
+            letter-spacing: -.03em;
+            text-align: center;
+        }
+
+        .plan-trip .plan-trip-main .trip-txt {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .plan-trip .plan-trip-main .trip-form {
+            padding: 20px;
+            width: 70%;
+            margin: 20px auto;
+        }
+
+        .plan-trip .plan-trip-main .trip-form-location,
+        .plan-trip .plan-trip-main .trip-form-date {
+            margin-bottom: 15px;
+        }
+
+#trip-location-input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.plan-trip .plan-trip-main .trip-form-date {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+}
+
+    .plan-trip .plan-trip-main .trip-form-date .date-picker {
+        width: 48%;
+        position: relative;
+    }
+
+        .plan-trip .plan-trip-main .trip-form-date .date-picker .date-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            left: 10px;
+            color: #696969;
+        }
+
+    .plan-trip .plan-trip-main .trip-form-date .trip-date-input {
+        padding: 15px;
+        padding-left: 30px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+        .plan-trip .plan-trip-main .trip-form-date .trip-date-input::placeholder {
+            color: #696969;
+        }
+
+.plan-trip-submit {
+    padding: 20px 0;
+    background-color: #f75940;
+    border-color: #f75940;
+    border-width: 1px;
+    border-radius: 20px;
+    width: 100%;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}

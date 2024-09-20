@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - TechWiz</title>
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/TechWiz.styles.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/UserLayout.css" asp-append-version="true" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="nav-bar">
+            <div class="nav-left">
+                <div class="nav-name">
+                    <a asp-controller="User" asp-action="Home" class="nav-name-lg"><i class="fa-solid fa-location-dot"></i> DATV</a>
+                </div>
+                <div class="nav-menu">
+                    <a asp-controller="User" asp-action="Home" class="nav-link">Home</a>
+                    <a href="" class="nav-link">Destination</a>
+                    <a asp-controller="User" asp-action="AboutUs" class="nav-link">AboutUs</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="nav-search">
+                    <form action="" class="nav-search-form">
+                        <i class="fa-solid fa-magnifying-glass nav-search-icon"></i>
+                        <input type="text" name="" id="" class="nav-search-input" placeholder="Explore by destination">
+                    </form>
+                </div>
+                <div class="nav-log">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer>
+        <div class="footer-content">
+            <h3 class="footer-h3">DATV Techwiz</h3>
+            <p class="footer-p">DATV Techwiz is an innovative web platform focused on delivering cutting-edge technological solutions and insights</p>
+            <ul class="socials">
+                <li class="footer-li"><a href="https://www.facebook.com/daihocthuyloi1959" class="footer-a"><i class="fa-brands fa-facebook"></i></a></li>
+                <li class="footer-li"><a href="https://www.youtube.com/daihocthuyloi" class="footer-a"><i class="fa-brands fa-youtube"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+	<script src="~/js/UserLayout.js" asp-append-version="true"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

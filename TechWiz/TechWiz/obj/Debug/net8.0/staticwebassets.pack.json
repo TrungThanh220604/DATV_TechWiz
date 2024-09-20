@@ -13,6 +13,26 @@
       "PackagePath": "staticwebassets\\css\\AdminLayout.css"
     },
     {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\PlanTrip.css",
+      "PackagePath": "staticwebassets\\css\\PlanTrip.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\UserHome.css",
+      "PackagePath": "staticwebassets\\css\\UserHome.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\UserLayout.css",
+      "PackagePath": "staticwebassets\\css\\UserLayout.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\aboutUs.css",
+      "PackagePath": "staticwebassets\\css\\aboutUs.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -25,8 +45,20 @@
       "PackagePath": "staticwebassets\\imageAdmin\\people.png"
     },
     {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageUser\\about-img.jpg",
+      "PackagePath": "staticwebassets\\imageUser\\about-img.jpg"
+    },
+    {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\AdminLayout.js",
       "PackagePath": "staticwebassets\\js\\AdminLayout.js"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\UserHome.js",
+      "PackagePath": "staticwebassets\\js\\UserHome.js"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\UserLayout.js",
+      "PackagePath": "staticwebassets\\js\\UserLayout.js"
     },
     {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\site.js",

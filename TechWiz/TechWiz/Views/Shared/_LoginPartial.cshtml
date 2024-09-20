@@ -3,26 +3,86 @@
 
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
-
+<link rel="stylesheet" href="~/css/UserLayout.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
+    @* <li class="nav-item">
         <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
     </li>
     <li class="nav-item">
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Home", "User", new { area = "" })">
             <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
         </form>
-    </li>
+    </li> *@
+    <div class="nav-is-log">
+            <div class="nav-notification">
+                <div class="notification-txt">
+                    <i class="fa-regular fa-bell"></i>
+                </div>
+                <div class="notification-list" id="notification-list">
+                    <p class="notification-list-txt">Notifications</p>
+                    <div class="notification-menu-list">
+                        <div class="notification-list-card">
+                            You spend 10$ to
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-user">
+                <div class="nav-user-name">
+                    <span>Hello @UserManager.GetUserName(User)!</span>
+                </div>
+                <div class="nav-user-list" id="nav-user-list">
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" id="manage" class="nav-menu-list"><i class="fa-regular fa-user"></i> Your profile</a>
+                    <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Home", "User", new { area = "" })" class="nav-menu-list"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</a>
+                </div>
+            </div>
+    </div>
 }
 else
-{
-    <li class="nav-item">
+{   
+    <div class="nav-log">
+        <a id="login" class="nav-link go-signin open-log" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a id="register" class="nav-logup go-signup open-log" asp-area="Identity" asp-page="/Account/Register">Sign up</a>
+    </div>
+    @* <li class="nav-item">
         <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">
         <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
+    </li> *@
 }
 </ul>
+<script>
+
+    document.querySelector('.notification-txt').addEventListener('click', function (event) {
+        event.stopPropagation();
+        var navuserlist = document.getElementById('nav-user-list');
+        var notificationList = document.getElementById('notification-list');
+        if (navuserlist.style.display === 'block') {
+            navuserlist.style.display = 'none';
+        }
+        if (notificationList.style.display === 'block') {
+            notificationList.style.display = 'none';
+        } else {
+            notificationList.style.display = 'block';
+        }
+    });
+
+    document.querySelector('.nav-user-name').addEventListener('click', function (event) {
+        event.stopPropagation();
+        var notificationList = document.getElementById('notification-list');
+        var navuserlist = document.getElementById('nav-user-list');
+        if (notificationList.style.display === 'block') {
+            notificationList.style.display = 'none';
+        }
+        if (navuserlist.style.display === 'block') {
+            navuserlist.style.display = 'none';
+        } else {
+            navuserlist.style.display = 'block';
+        }
+    });
+
+</script>
