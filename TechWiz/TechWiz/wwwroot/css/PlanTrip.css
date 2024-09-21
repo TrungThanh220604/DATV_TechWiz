@@ -71,6 +71,13 @@ body {
     border-radius: 4px;
     font-size: 1rem;
 }
+#trip-budget {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
 
 .plan-trip .plan-trip-main .trip-form-date {
     width: 100%;
@@ -118,3 +125,20 @@ body {
     cursor: pointer;
     margin-top: 10px;
 }
+.suggestion-list1 {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width: 400px;
+}
+
+.suggestion-item1 {
+    padding: 10px;
+    cursor: pointer;
+}
+
+    .suggestion-item1:hover {
+        background-color: #f0f0f0;
+    }
+

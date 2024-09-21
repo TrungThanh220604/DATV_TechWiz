@@ -364,4 +364,23 @@ header {
         word-spacing: 2px;
         text-transform: capitalize;
     }
+.suggestion-list {
+    top: 60px;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width:200px;
+    padding: 10px;
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+    .suggestion-item:hover {
+        background-color: #f0f0f0;
+    }
+
 /* End Footer */

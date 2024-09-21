@@ -17,6 +17,14 @@
       "PackagePath": "staticwebassets\\css\\PlanTrip.css"
     },
     {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\UserDestinationDetail.css",
+      "PackagePath": "staticwebassets\\css\\UserDestinationDetail.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\UserDestinationList.css",
+      "PackagePath": "staticwebassets\\css\\UserDestinationList.css"
+    },
+    {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\UserHome.css",
       "PackagePath": "staticwebassets\\css\\UserHome.css"
     },
@@ -45,12 +53,172 @@
       "PackagePath": "staticwebassets\\imageAdmin\\people.png"
     },
     {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\1383-2048x1481.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\1383-2048x1481.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\14-12-2020-du-hoc-tai-paris-phap-01.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\14-12-2020-du-hoc-tai-paris-phap-01.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\15-d7c5db42-3758-48cc-9a35-e4c1971273fd.webp",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\15-d7c5db42-3758-48cc-9a35-e4c1971273fd.webp"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\3-Yuyuan-Garden-2.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\3-Yuyuan-Garden-2.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\453065f5-09b2-4ae4-931f-fa95dc6ec4f5.png",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\453065f5-09b2-4ae4-931f-fa95dc6ec4f5.png"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\62db101a-e16a-4a29-8135-9bbd9ffaac81.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\62db101a-e16a-4a29-8135-9bbd9ffaac81.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\775828.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\775828.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\97-Naples.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\97-Naples.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\97.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\97.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\972979-new-york-city-cities-brooklyn-bridge-manhattan-ville-usa-building-2.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\972979-new-york-city-cities-brooklyn-bridge-manhattan-ville-usa-building-2.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\GettyImages-931933966.webp",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\GettyImages-931933966.webp"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\HERO_UltimateLondon_Hero_shutterstock412054315.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\HERO_UltimateLondon_Hero_shutterstock412054315.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\Hanoi city modern.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\Hanoi city modern.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\No_image_available.svg.webp",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\No_image_available.svg.webp"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\One_Pillar_Pagoda_Hanoi_Vietnam.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\One_Pillar_Pagoda_Hanoi_Vietnam.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\Roam-around-the-top-7-historical-monuments-of-Mumbai-Chhatrapati-Shivaji-Terminus-I-MiStay.jpeg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\Roam-around-the-top-7-historical-monuments-of-Mumbai-Chhatrapati-Shivaji-Terminus-I-MiStay.jpeg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\Sarah-De-Gheselle-2117-1-1536x1022.webp",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\Sarah-De-Gheselle-2117-1-1536x1022.webp"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\bridge-central-park_566070676.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\bridge-central-park_566070676.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\champs-elysees-paris-phap-5442.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\champs-elysees-paris-phap-5442.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\e6c1f55e-51ac-41d5-8c63-2d0c63faf59e.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\e6c1f55e-51ac-41d5-8c63-2d0c63faf59e.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\hanoi-hoankiem.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\hanoi-hoankiem.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\hanoi-train-street-1.webp",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\hanoi-train-street-1.webp"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\image-top-9-diem-tham-quan-nhat-dinh-phai-ghe-khi-du-lich-paris-phap-165531143384631.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\image-top-9-diem-tham-quan-nhat-dinh-phai-ghe-khi-du-lich-paris-phap-165531143384631.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\mumbai.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\mumbai.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\napoli-1.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\napoli-1.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\napoli.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\napoli.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\new-york-city-skyline-sunset.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\new-york-city-skyline-sunset.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\paris-phap-32422.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\paris-phap-32422.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\paris.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\paris.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\photo-1567157577867-05ccb1388e66.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\photo-1567157577867-05ccb1388e66.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\shanghai-busy-street-ebc49edbc0c045fca7faa7379c883c5b.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\shanghai-busy-street-ebc49edbc0c045fca7faa7379c883c5b.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\shanghai-skyline.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\shanghai-skyline.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\skyline-of-berlin--germany--with-tv-tower-at-dusk-925669312-6ff2aac812bd43328431db0fe87dca66.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\skyline-of-berlin--germany--with-tv-tower-at-dusk-925669312-6ff2aac812bd43328431db0fe87dca66.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\tranh-dan-tuong-3d-thanh-pho-thap-eiffel-paris-phap.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\tranh-dan-tuong-3d-thanh-pho-thap-eiffel-paris-phap.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\umfrage_london_180222162735001-1600x960.jpeg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\umfrage_london_180222162735001-1600x960.jpeg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\vista-de-napoles-de-do-seu-famoso-golfo-atras-o-vulcao-vesuvio-foto-tanialerro-123rf.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\vista-de-napoles-de-do-seu-famoso-golfo-atras-o-vulcao-vesuvio-foto-tanialerro-123rf.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\wp11562885.webp",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\wp11562885.webp"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\wp2000976.jpg",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\wp2000976.jpg"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageDestinationUser\\zxvtpnk9w62on9nibcsm.webp",
+      "PackagePath": "staticwebassets\\imageDestinationUser\\zxvtpnk9w62on9nibcsm.webp"
+    },
+    {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\imageUser\\about-img.jpg",
       "PackagePath": "staticwebassets\\imageUser\\about-img.jpg"
     },
     {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\AdminLayout.js",
       "PackagePath": "staticwebassets\\js\\AdminLayout.js"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\UserGallery.js",
+      "PackagePath": "staticwebassets\\js\\UserGallery.js"
     },
     {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\UserHome.js",

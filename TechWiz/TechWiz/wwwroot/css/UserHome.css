@@ -370,6 +370,97 @@ header {
 }
 /* End Home -> Start */
 
+/* User-trip */
+
+
+.home .home-user-trip {
+    width: 100%;
+    background-color: #fff;
+    padding: 100px 0;
+}
+
+    .home .home-user-trip .home-user-trip-content {
+        width: 80%;
+        margin: auto;
+    }
+
+.home-user-trip .user-trip-text {
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .home-user-trip .user-trip-text .user-trip-plan {
+        font-size: 1rem;
+        padding: 12px;
+        background-color: #f75940;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+    }
+
+.home-user-trip .user-trip-list {
+    display: flex;
+    margin-top: 20px;
+    gap: 17px;
+    overflow: hidden;
+    position: relative;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+    .home-user-trip .user-trip-list .user-trip-card {
+        width: 260px;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+.user-trip-list .user-trip-card .trip-card-img {
+    width: 260px;
+    height: 160px;
+    overflow: hidden;
+    transition: transform .3s;
+    border-radius: 10px;
+}
+
+.user-trip-list .user-trip-card .trip-card-img-i {
+    border-radius: 10px;
+    width: 260px;
+    height: 160px;
+}
+
+.user-trip-list .user-trip-card .user-trip-card-link {
+    text-decoration: none;
+}
+
+    .user-trip-list .user-trip-card .user-trip-card-link:hover .trip-card-img-i {
+        transform: scale(1.1);
+    }
+
+.user-trip-list .user-trip-card .trip-card-txt {
+    font-size: 1.2rem;
+    padding: 10px 5px;
+    color: #000;
+}
+
+    .user-trip-list .user-trip-card .trip-card-txt .trip-card-txt-p {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+.user-trip-list .scroll-right {
+    position: absolute;
+}
+
+
+
+/* User-trip-end */
 
 
 /* Home -> Features */
@@ -378,6 +469,7 @@ header {
     width: 100%;
     background-color: #fff;
     padding: 100px 0;
+    padding-top: 50px;
 }
 
     .home .home-feature .home-feature-content {

@@ -5,34 +5,46 @@
     ViewData["Title"] = "Home";
     Layout = "~/Views/Shared/LayoutUser.cshtml";
 }
+@model TechWiz.Models.AddTripViewModel
 <link rel="stylesheet" href="~/css/PlanTrip.css" asp-append-version="true" />
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div class="plan-trip">
     <div class="plan-trip-main">
         <div class="plan-trip-container">
-            <form action="">
+            <form method="post" action="/User/AddTrip" onsubmit="return validateDates()">
                 <div class="trip-name">
                     <p>Plan a new trip</p>
                 </div>
                 <div class="trip-form">
                     <div class="trip-form-location">
                         <label for="trip-location-input" class="trip-txt">Where to?</label>
-                        <input id="trip-location-input" type="text" name="trip-location-input" placeholder="e.g. Paris, Hawaii, VietNam" />
+                        <input id="trip-location-input" class="desIn" type="text" placeholder="e.g. New York" required />
+                        <div id="location-suggestions" class="suggestion-list1" style="display: none;"></div>
+                        <input type="hidden" asp-for="DestinationId" name="DestinationId" />
                     </div>
+
+                    <div class="trip-form-location">
+                        <label for="trip-location-input" class="trip-txt">Budget</label>
+                        <input asp-for="Budget" id="trip-budget" type="number" name="budget" placeholder="VND" required />
+                        <span asp-validation-for="Budget" class="text-danger"></span>
+                    </div>
+
                     <p class="trip-txt">Dates (optional)</p>
                     <div class="trip-form-date">
                         <div class="date-picker">
                             <label for="trip-start" class="date-icon">
                                 <i class="fa-regular fa-calendar-days"></i>
                             </label>
-                            <input type="text" name="trip-start" id="trip-start" class="trip-date-input" readonly placeholder="Start date">
+                            <input type="text" asp-for="StartTime" name="startTime" id="trip-start" class="trip-date-input" readonly placeholder="Start date">
+                            <span asp-validation-for="StartTime" class="text-danger"></span>
                         </div>
                         <div class="date-picker">
                             <label for="trip-end" class="date-icon">
                                 <i class="fa-regular fa-calendar-days"></i>
                             </label>
-                            <input type="text" name="trip-end" id="trip-end" class="trip-date-input" readonly placeholder="End date">
+                            <input asp-for="EndTime" type="text" name="endTime" id="trip-end" class="trip-date-input" readonly placeholder="End date">
+                            <span asp-validation-for="EndTime" class="text-danger"></span>
                         </div>
                     </div>
                     <button type="submit" class="plan-trip-submit">Start planning</button>
@@ -42,11 +54,110 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#trip-start").datepicker();
-        $("#trip-end").datepicker();
-    });
-</script>
+@section Scripts {
+    <script>
+        let validDestinationIds = [];
+        let selectedDestinationId = null;
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("#trip-start");
+            flatpickr("#trip-end");
+
+            const locationInput = document.getElementById('trip-location-input');
+            const suggestionsList = document.getElementById('location-suggestions');
+            fetch('/User/GetValidDestinations')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    validDestinationIds = data.map(dest => dest.id.toString());
+                    console.log(validDestinationIds);
+                });
+
+            locationInput.addEventListener('input', function () {
+                const query = locationInput.value;
+
+                if (query.length > 0) {
+                    fetch(`/User/Search?query=${encodeURIComponent(query)}`)
+                        .then(response => response.json())
+                        .then(suggestions => {
+                            suggestionsList.innerHTML = '';
+
+                            if (Array.isArray(suggestions) && suggestions.length > 0) {
+                                suggestions.forEach(destination => {
+                                    const suggestionItem = document.createElement('div');
+                                    suggestionItem.className = 'suggestion-item1';
+                                    suggestionItem.dataset.id = destination.id;
+                                    suggestionItem.textContent = destination.desName;
+                                    suggestionsList.appendChild(suggestionItem);
+                                });
+                                suggestionsList.style.display = 'block';
+                            } else {
+                                suggestionsList.style.display = 'none';
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error fetching location suggestions", error);
+                            suggestionsList.style.display = 'none';
+                        });
+                } else {
+                    suggestionsList.style.display = 'none';
+                }
+            });
+
+            suggestionsList.addEventListener('click', function (event) {
+                if (event.target.classList.contains('suggestion-item1')) {
+                    locationInput.value = event.target.textContent;
+                    selectedDestinationId = event.target.dataset.id;
+                    document.querySelector('input[name="DestinationId"]').value = event.target.dataset.id;
+                    suggestionsList.style.display = 'none';
+                }
+            });
+            document.addEventListener('click', function (event) {
+                if (!event.target.closest('.trip-form-location')) {
+                    suggestionsList.style.display = 'none';
+                }
+            });
+
+            document.querySelector('form').addEventListener('submit', function () {
+                console.log("Submitting DestinationId:", document.querySelector('input[name="DestinationId"]').value);
+            });
+        });
+        function validateDates() {
+            console.log(selectedDestinationId);
+            console.log(validDestinationIds);
+            if (selectedDestinationId === null || !validDestinationIds.includes(selectedDestinationId)) {
+                alert('Please select a valid destination from the suggestions.');
+                return false;
+            }
+            var startDate = document.getElementById('trip-start').value;
+            var endDate = document.getElementById('trip-end').value;
+            var currentDate = new Date();
+
+            // Chuyển đổi chuỗi ngày thành đối tượng Date
+            var start = new Date(startDate);
+            var end = new Date(endDate);
+
+            // Kiểm tra xem người dùng đã chọn ngày chưa
+            if (!startDate || !endDate) {
+                alert('Please select both start and end dates');
+                return false;
+            }
+
+            // Kiểm tra xem ngày bắt đầu có lớn hơn ngày hiện tại không
+            if (start <= currentDate) {
+                alert('Start date must be greater than current date');
+                return false;
+            }
+
+            // Kiểm tra xem ngày bắt đầu có nhỏ hơn ngày kết thúc không
+            if (start >= end) {
+                alert('Start date must be less than end date');
+                return false;
+            }
+           
+
+            return true;
+        }
+
+    </script>
+}
+

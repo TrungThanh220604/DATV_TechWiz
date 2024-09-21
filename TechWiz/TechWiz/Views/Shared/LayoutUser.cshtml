@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="~/TechWiz.styles.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/UserLayout.css" asp-append-version="true" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <header>
@@ -23,7 +24,8 @@
                 </div>
                 <div class="nav-menu">
                     <a asp-controller="User" asp-action="Home" class="nav-link">Home</a>
-                    <a href="" class="nav-link">Destination</a>
+                    <a asp-controller="User" asp-action="PlanTrip" class="nav-link">Plan trip</a>
+                    <a asp-controller="User" asp-action="Destination" class="nav-link">Gallery</a>
                     <a asp-controller="User" asp-action="AboutUs" class="nav-link">AboutUs</a>
                 </div>
             </div>
@@ -31,9 +33,11 @@
                 <div class="nav-search">
                     <form action="" class="nav-search-form">
                         <i class="fa-solid fa-magnifying-glass nav-search-icon"></i>
-                        <input type="text" name="" id="" class="nav-search-input" placeholder="Explore by destination">
+                        <input type="text" id="search-input" class="nav-search-input" placeholder="Explore by destination">
+                        <div id="suggestions" class="suggestion-list" style="display: none;"></div>
                     </form>
                 </div>
+
                 <div class="nav-log">
                     <partial name="_LoginPartial" />
                 </div>
@@ -51,6 +55,70 @@
             </ul>
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        $(document).ready(function () {
+            $('#search-input').on('input', function () {
+                let query = $(this).val();
+
+                if (query.length > 0) {
+                    $.get(`/User/Search?query=${encodeURIComponent(query)}`, function (suggestions) {
+                        $('#suggestions').empty();
+
+                        if (Array.isArray(suggestions) && suggestions.length > 0) {
+                            suggestions.forEach(destination => {
+                                console.log("Destination ID:", destination.id);
+                                $('#suggestions').append(`<div class="suggestion-item" data-id="${destination.id}">${destination.desName}</div>`);
+                            });
+                            $('#suggestions').show();
+                        } else {
+                            $('#suggestions').hide();
+                        }
+                    }).fail(function () {
+                        console.error("Error fetching suggestions");
+                        $('#suggestions').hide();
+                    });
+                } else {
+                    $('#suggestions').hide();
+                }
+            });
+
+            $('#search-input').on('keypress', function (event) {
+                if (event.which === 13) { 
+                    const selectedId = $('.suggestion-item.selected').data('id');
+                    console.log("Selected ID:", selectedId);
+                    if (selectedId) {
+                        window.location.href = `/User/DetailGallery/${selectedId}`; 
+                    } else {
+                        console.log("No destination selected");
+                    }
+                    event.preventDefault(); 
+                }
+            });
+
+            $(document).on('click', '.suggestion-item', function () {
+                $('#search-input').val($(this).text());
+                $('#suggestions').hide();
+            });
+
+            $(document).on('click', function (event) {
+                if (!$(event.target).closest('.nav-search-form').length) {
+                    $('#suggestions').hide();
+                }
+            });
+
+
+            $(document).on('mouseover', '.suggestion-item', function () {
+                $('.suggestion-item').removeClass('selected');
+                $(this).addClass('selected');
+            });
+        });
+
+
+
+
+    </script>
 	<script src="~/js/UserLayout.js" asp-append-version="true"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)

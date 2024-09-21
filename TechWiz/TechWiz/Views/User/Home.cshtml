@@ -26,6 +26,29 @@
                     </div>
                 </div>
             </div>
+            <div class="home-user-trip">
+                <div class="home-user-trip-content">
+                    <div class="user-trip-text">
+                        <p>Recently viewed and upcoming</p>
+                        <a href="" class="user-trip-plan"><i class="fa-solid fa-plus"></i> Plan new trip</a>
+                    </div>
+                    <div class="user-trip-list" id="user-trip-list">
+                        @foreach (var trip in ViewBag.Trips)
+                        {
+                        <div class="user-trip-card">
+                            <a href="" class="user-trip-card-link">
+                                <div class="trip-card-img">
+                                    <img class="trip-card-img-i" src="~/imageDestinationUser/@trip.FirstGalleryImage" alt="">
+                                </div>
+                                <div class="trip-card-txt">
+                                    <p class="trip-card-txt-p">@trip.TripName</p>
+                                </div>
+                            </a>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
 
             <!-- Features -->
              <div class="home-feature">
