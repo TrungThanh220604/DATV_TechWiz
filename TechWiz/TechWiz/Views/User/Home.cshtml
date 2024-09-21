@@ -1,0 +1,131 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+@model TechWiz.Models.SendMailDto
+<link rel="stylesheet" href="~/css/UserHome.css" asp-append-version="true" />
+<div class="home">
+        <div class="home-main">
+            <!-- Start -->
+            <div class="home-start">
+                <div class="home-start-content">
+                    <div class="home-start-text">
+                        <h1 class="home-start-text-h1">A travel planner for everyone</h1>
+                        <h3 class="home-start-text-h3">
+                            Organize flights & hotels and map your 
+                            trips in a free travel app designed for 
+                            vacation planning & road trips, powered 
+                            by AI and Google Maps.
+                        </h3>
+                        <div class="home-start-text-button">
+                        <a asp-controller="User" asp-action="PlanTrip" class="home-start-link">Start planning</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-user-trip">
+                <div class="home-user-trip-content">
+                    <div class="user-trip-text">
+                        <p>Recently viewed and upcoming</p>
+                        <a href="" class="user-trip-plan"><i class="fa-solid fa-plus"></i> Plan new trip</a>
+                    </div>
+                    <div class="user-trip-list" id="user-trip-list">
+                        @foreach (var trip in ViewBag.Trips)
+                        {
+                        <div class="user-trip-card">
+                            <a href="" class="user-trip-card-link">
+                                <div class="trip-card-img">
+                                    <img class="trip-card-img-i" src="~/imageDestinationUser/@trip.FirstGalleryImage" alt="">
+                                </div>
+                                <div class="trip-card-txt">
+                                    <p class="trip-card-txt-p">@trip.TripName</p>
+                                </div>
+                            </a>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+             <div class="home-feature">
+                <div class="home-feature-content">
+                    <div class="feature-name">
+                        <p>Features to replace all your other tools</p>
+                    </div>
+                    <div class="feature-list">
+                        <div class="feature-card">
+                            <div class="feature-card-img">
+                                <img src="https://wanderlog.com/assets/MainFeatureTiles__addPlaces.png" class="feature-img" alt="">
+                            </div>
+                            <div class="feature-card-txt">
+                                <h3 class="feature-card-h3">Add places from guides with 1 click</h3>
+                                <p class="feature-card-p">We crawled the web so you don’t have to. Easily save mentioned places.</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-img">
+                                <img src="https://wanderlog.com/assets/MainFeatureTiles__checklist.png" class="feature-img"alt="">
+                            </div>
+                            <div class="feature-card-txt">
+                                <h3 class="feature-card-h3">Checklists for anything</h3>
+                                <p class="feature-card-p">Stay organized with a packing list, to-do list, shopping list, any kind of list.</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-img">
+                                <img src="https://wanderlog.com/assets/MainFeatureTiles__recommendations.png" class="feature-img" alt="">
+                            </div>
+                            <div class="feature-card-txt">
+                                <h3 class="feature-card-h3">Get personalized suggestions</h3>
+                                <p class="feature-card-p">Find the best places to visit with smart recommendations based on your itinerary.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+            <!-- Contact -->
+            <div class="home-contact">
+                <div class="home-contact-content">
+                    <div class="home-contact-left">
+                        <div class="contact-left-txt">
+                            <p>Contact Us</p>
+                            <a href="mailto:datv@aptech.vn" class="contact-left-txt-a">datv@aptech.vn</a>
+                        </div>
+                        <div class="contact-form">
+                        <form action="@Url.Action("ContactUs", "User")" class="contact-form-main" method="post">
+                                <div class="contact-form-input">
+                                    <label asp-for="@Model.Name">Name</label>
+                                    <input type="text" name="Name" id="contact-name" class="contact-input" placeholder="Name" asp-for="@Model.Name" required>
+                                </div>
+                                <div class="contact-form-input">
+                                    <label asp-for="@Model.MailTo">Email Address</label>
+                                    <input type="email" name="MailTo" id="contact-email" class="contact-input" placeholder="Email" asp-for="@Model.MailTo" required>
+                                </div>
+                            <div class="contact-form-input">
+                                <label asp-for="@Model.Phone">Phone</label>
+                                <input type="number" name="Phone" id="contact-email" class="contact-input" placeholder="Phone" asp-for="@Model.Phone" required>
+                            </div>
+                                <div class="contact-form-input">
+                                    <label asp-for="@Model.Message">Message</label>
+                                    <textarea name="Message" id="contact-message" placeholder="Message" asp-for="@Model.Message" required></textarea>
+                                </div>
+                                <div class="contact-form-submit">
+                                    <button type="submit" class="contact-form-submit-btn">Send Message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="home-contact-right">
+                        <div class="contact-map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.6327987232817!2d105.82215547393335!3d21.007351588516087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac8109765ba5%3A0xd84740ece05680ee!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUaOG7p3kgbOG7o2k!5e0!3m2!1svi!2s!4v1726676105307!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

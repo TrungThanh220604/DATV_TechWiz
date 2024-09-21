@@ -1,14 +1,19 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TechWiz.Data;
 using TechWiz.Models;
+=======
+﻿using Microsoft.AspNetCore.Mvc;
+>>>>>>> main
 
 namespace TechWiz.Controllers
 {
     public class AdminController : Controller
     {
+<<<<<<< HEAD
 		private readonly UserManager<User> _userManager;
 		private readonly ApplicationDbContext _context;
 
@@ -359,4 +364,11 @@ namespace TechWiz.Controllers
 
 
 	}
+=======
+        public IActionResult DashBoard()
+        {
+            return View();
+        }
+    }
+>>>>>>> main
 }

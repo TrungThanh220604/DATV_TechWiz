@@ -22,7 +22,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\imageAdmin\" />
+<<<<<<< HEAD
     <Folder Include="wwwroot\img_destination\" />
+=======
+>>>>>>> main
   </ItemGroup>
 
 </Project>

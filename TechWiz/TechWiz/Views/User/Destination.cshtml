@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Gallery";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+<link rel="stylesheet" href="~/css/UserDestinationList.css" asp-append-version="true" />
+<main>
+    <section id="destination">
+        <div class="destination-heading">
+            <h3>Gallery</h3>
+        </div>
+        <div class="destination-container">
+            @foreach (var destination in ViewBag.Destinations)
+            {
+                var firstImage = ViewBag.FirstGalleryImages as List<TechWiz.Models.Gallery>;
+                var image = firstImage?.FirstOrDefault(g => g.destination?.Id == destination.Id);
+                <div class="destination-box">
+                    <div class="destination-img">
+                        @if (firstImage != null)
+                        {
+                            <img alt="destination" src="~/imageDestinationUser/@image.link_pic">
+                        }
+                        else
+                        {
+                            <img alt="No Image" src="~/imageDestinationUser/No_image_available.svg.webp" />
+                        }
+                    </div>
+                    <div class="destination-text">
+                        <a href="@Url.Action("DetailGallery", "User", new { id = destination.Id })" class="destination-title">@destination.DesName</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</main>
+<script src="~/js/UserGallery.js" asp-append-version="true"></script>

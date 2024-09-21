@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model TechWiz.Models.Destination
+@{
+    ViewData["Title"] = "Gallery - "+Model.DesName;
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+<link rel="stylesheet" href="~/css/UserDestinationList.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<main>
+    <div class="gallery-title">
+        <h1>Destination: @Model.DesName</h1>
+    </div>
+    <div class="picture-des">
+        <div class="picture-title">
+            <h2>Gallery:</h2>
+        </div>
+        <div class="wrapper">
+            <div class="gallery">
+                @if (Model.Galleries != null && Model.Galleries.Any())
+                {
+                    foreach (var image in Model.Galleries)
+                    {
+                        <div class="image"><span><img src="~/imageDestinationUser/@image.link_pic" alt=""></span></div>
+                    }
+                }
+                else
+                {
+                    <p>No image</p>
+                }
+            </div>
+        </div>
+        <div class="preview-box">
+            <div class="details">
+                <span class="title">Image <p class="current-img"></p> of <p class="total-img"></p></span>
+                <span class="icon fas fa-times"></span>
+            </div>
+            <div class="image-box">
+                <div class="slide prev"><i class="fas fa-angle-left"></i></div>
+                <div class="slide next"><i class="fas fa-angle-right"></i></div>
+                <img src="" alt="">
+            </div>
+        </div>
+        <div class="shadow"></div>
+    </div>
+    <div class="gps-des">
+        <div class="gps-title">
+            <h2>Location:</h2>
+        </div>
+        <iframe src="@Model.link_GPS" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+</main>
+<script src="~/js/UserGallery.js" asp-append-version="true"></script>

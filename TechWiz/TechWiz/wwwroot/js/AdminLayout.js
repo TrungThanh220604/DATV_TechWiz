@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿// Hàm để thiết lập active cho menu
 function setActiveMenu() {
 	const activeMenu = localStorage.getItem('activeMenu');
@@ -14,10 +15,14 @@ function setActiveMenu() {
 }
 
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+=======
+﻿const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+>>>>>>> main
 
 allSideMenu.forEach(item => {
 	const li = item.parentElement;
 
+<<<<<<< HEAD
 	// Thêm sự kiện click
 	item.addEventListener('click', function () {
 		allSideMenu.forEach(i => {
@@ -34,6 +39,16 @@ allSideMenu.forEach(item => {
 setActiveMenu();
 
 
+=======
+	item.addEventListener('click', function () {
+		allSideMenu.forEach(i => {
+			i.parentElement.classList.remove('active');
+		})
+		li.classList.add('active');
+	})
+});
+
+>>>>>>> main
 // TOGGLE SIDEBAR
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
