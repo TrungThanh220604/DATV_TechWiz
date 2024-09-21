@@ -1,7 +1,7 @@
 ################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
+TechWiz/.vs/TechWiz/v17/.suo
 /TechWiz/.vs/TechWiz/v17/.suo
 /TechWiz/TechWiz/obj/Debug/net8.0/TechWiz.AssemblyInfo.cs
 /TechWiz/TechWiz/obj/Debug/net8.0/TechWiz.AssemblyInfoInputs.cache
