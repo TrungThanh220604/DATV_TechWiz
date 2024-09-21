@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TechWiz.props" />
+</Project>
