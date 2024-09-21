@@ -1,0 +1,120 @@
+﻿<link rel="stylesheet" href="~/css/DestinationDetail.css">
+<style>
+	.alert {
+		padding: 15px;
+		margin: 20px 0;
+		border: 1px solid transparent;
+		border-radius: 5px;
+		font-size: 16px;
+	}
+
+	.alert-success {
+		color: #155724;
+		background-color: #d4edda;
+		border-color: #c3e6cb;
+	}
+
+	.alert-error {
+		color: #721c24;
+		background-color: #f8d7da;
+		border-color: #f5c6cb;
+	}
+
+	/* Animation for fade out */
+	.alert.fade-out {
+		opacity: 0;
+		transition: opacity 0.5s ease-out;
+	}
+
+</style>
+<div class="head-title">
+	<div class="left">
+		<h1>Destinations Management</h1>
+		<ul class="breadcrumb">
+			<li>
+				<a href="#">Destinations Management</a>
+			</li>
+			<li><i class='bx bx-chevron-right'></i></li>
+			<li>
+				<a class="active" href="#">Detail Destination</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="detail-des">
+	<div class="des-title">
+		<div class="des-text">
+			@if (Model != null)
+			{
+				<h2>Destination: @Model.DesName</h2>
+			}
+			
+		</div>
+		<div class="des-act">
+			<a href="#" class="btn-add">
+				<i class='bx bx-plus'></i>
+				<span class="text">Add Photo</span>
+			</a>
+		</div>
+	</div>
+
+	@if (TempData["SuccessMessage"] != null)
+	{
+		<div class="alert alert-success">
+			@TempData["SuccessMessage"]
+		</div>
+	}
+
+	<div class="des-pic">
+		<h2>Photo Description:</h2>
+		<div class="gallery">
+			@foreach (var gallery in Model.Galleries)
+			{
+				<div class="image-container">
+					<img src="~/img_destination/@gallery.link_pic" alt="Photo">					
+					<form asp-action="DeletePhoto" method="post" style="display:inline;">
+						<input type="hidden" name="photoId" value="@gallery.Id" />
+						<input type="hidden" name="destinationId" value="@Model.Id" />
+						<button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa ảnh này không?');"><i class='bx bxs-trash-alt delete-icon'></i></button>
+					</form>
+				</div>
+			}
+		</div>
+
+	
+	</div>
+	<div class="des-gps">
+		<h2>Location:</h2>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29793.9884588654!2d105.81636405839674!3d21.02273835997583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2zSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1726933083003!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	</div>
+</div>
+
+<!-- Form Add -->
+<div class="form-action" id="form-action-add">
+	<div class="form-container">
+		<div class="form-main" id="form-main-add">
+			<div class="form-close">
+				<i class='bx bx-x'></i>
+			</div>
+			<form asp-action="AddPhoto" method="post" enctype="multipart/form-data" id="add" class="form-add">
+				@if (Model != null)
+				{
+					<input type="hidden" name="destinationId" value="@Model.Id">
+				}
+				<div class="form-title">
+					<p>Add Photo</p>
+					<p>To Destination</p>
+				</div>
+				<div class="form-info">
+					<div class="form-input">
+						<input type="file" name="photo" id="destination" required>
+					</div>
+				</div>
+				<button type="submit" class="form-submit">Save</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="~/js/action.js"></script>
+<script src="~/js/AdminLayout.js"></script>

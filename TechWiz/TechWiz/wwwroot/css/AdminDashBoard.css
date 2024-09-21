@@ -1,0 +1,134 @@
+﻿/* MAIN */
+main .box-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 24px;
+    margin-top: 36px;
+}
+
+    main .box-info li {
+        padding: 24px;
+        background: var(--light);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        grid-gap: 24px;
+    }
+
+        main .box-info li .bx {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            font-size: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main .box-info li:nth-child(1) .bx {
+            background: var(--light-blue);
+            color: var(--blue);
+        }
+
+        main .box-info li:nth-child(2) .bx {
+            background: var(--light-yellow);
+            color: var(--yellow);
+        }
+
+        main .box-info li:nth-child(3) .bx {
+            background: var(--light-orange);
+            color: var(--orange);
+        }
+
+        main .box-info li:nth-child(4) .bx {
+            background: var(--light-green);
+            color: var(--green);
+        }
+
+        main .box-info li .text h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        main .box-info li .text p {
+            color: var(--dark);
+        }
+
+main .table-data {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 24px;
+    margin-top: 24px;
+    width: 100%;
+    color: var(--dark);
+}
+
+    main .table-data > div {
+        border-radius: 20px;
+        background: var(--light);
+        padding: 24px;
+        overflow-x: auto;
+    }
+
+    main .table-data .head {
+        display: flex;
+        align-items: center;
+        grid-gap: 16px;
+        margin-bottom: 24px;
+    }
+
+        main .table-data .head h3 {
+            margin-right: auto;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+    main .table-data .order {
+        flex-grow: 1;
+        flex-basis: 500px;
+    }
+
+        main .table-data .order table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            main .table-data .order table th {
+                padding-bottom: 12px;
+                font-size: 13px;
+                text-align: left;
+                border-bottom: 1px solid var(--grey);
+            }
+
+            main .table-data .order table td {
+                padding: 16px 0;
+            }
+
+            main .table-data .order table tr td:first-child {
+                display: flex;
+                align-items: center;
+                grid-gap: 12px;
+                padding-left: 6px;
+            }
+
+            main .table-data .order table td img {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            main .table-data .order table tbody tr:hover {
+                background: var(--grey);
+            }
+/* MAIN */
+@media screen and (max-width: 576px) {
+    main .table-data .head {
+        min-width: 420px;
+    }
+
+    main .table-data .order table {
+        min-width: 420px;
+    }
+}

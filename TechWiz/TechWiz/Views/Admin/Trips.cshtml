@@ -1,0 +1,62 @@
+﻿<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="~/css/Trips.css">
+@{
+	int index = 1;
+}
+
+<div class="head-title">
+	<div class="left">
+		<h1>Trips Management</h1>
+		<ul class="breadcrumb">
+			<li>
+				<a href="#">Trips Management</a>
+			</li>
+			<li><i class='bx bx-chevron-right'></i></li>
+			<li>
+				<a class="active" href="#">Home</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="table-list">
+	<table id="example">
+		<thead>
+			<tr>
+				<th>Stt</th>
+				<th>Name User</th>
+				<th>Name Trip</th>
+				<th>Destination</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Budget</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			@foreach (var trip in Model)
+			{
+				<tr>
+					<td>@index</td>
+					<td>@trip.user?.UserName</td>
+					<td>@trip.TripName</td>
+					<td>@trip.destination?.DesName</td>
+					<td>@trip.StartTime?.ToString("yyyy-MM-dd")</td>
+					<td>@trip.EndTime?.ToString("yyyy-MM-dd")</td>
+					<td>@($"${trip.Budget?.ToString("N2")}")</td>
+				</tr>
+				index++;
+			}
+			
+		</tbody>
+	</table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$('#example').DataTable({
+			"lengthChange": false
+		});
+	});
+</script>
