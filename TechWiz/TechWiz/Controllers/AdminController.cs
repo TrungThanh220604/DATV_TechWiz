@@ -307,7 +307,7 @@ namespace TechWiz.Controllers
             if (photo != null && photo.Length > 0)
             {
                 var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(photo.FileName);
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img_destination", uniqueFileName);
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imageDestinationUser", uniqueFileName);
 
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
