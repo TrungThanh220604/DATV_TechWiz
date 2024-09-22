@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using TechWiz.Data;
 using TechWiz.Models;
 
 namespace TechWiz.Areas.Identity.Pages.Account.Manage
@@ -17,14 +19,19 @@ namespace TechWiz.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly ApplicationDbContext _dbContext;
 
         public IndexModel(
             UserManager<User> userManager,
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager,
+            ApplicationDbContext dbContext)
+
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _dbContext = dbContext;
         }
+        public List<Currency> Currencies { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -59,6 +66,10 @@ namespace TechWiz.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Profile Picture")]
+            public IFormFile link_avatar { get; set; }
+            public int? PreferredCurrencyId { get; set; }
         }
 
         private async Task LoadAsync(User user)
@@ -72,6 +83,7 @@ namespace TechWiz.Areas.Identity.Pages.Account.Manage
             {
                 PhoneNumber = phoneNumber
             };
+            ViewData["ProfilePicture"] = user.link_avatar;
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -83,6 +95,7 @@ namespace TechWiz.Areas.Identity.Pages.Account.Manage
             }
 
             await LoadAsync(user);
+            Currencies = await _dbContext.Currencies.ToListAsync();
             return Page();
         }
 
@@ -110,7 +123,19 @@ namespace TechWiz.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+            if (Input.link_avatar != null && Input.link_avatar.Length > 0)
+            {
+                var fileName = Path.GetFileName(Input.link_avatar.FileName);
+                var filePath = Path.Combine("wwwroot/images/profiles", fileName);
 
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Input.link_avatar.CopyToAsync(stream);
+                }
+
+                user.link_avatar = $"/images/profiles/{fileName}";
+                await _userManager.UpdateAsync(user);
+            }
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

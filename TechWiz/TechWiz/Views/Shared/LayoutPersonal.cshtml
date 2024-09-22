@@ -17,21 +17,24 @@
         <div class="nav-bar">
             <div class="nav-left">
                 <div class="nav-name">
-                    <a href="" class="nav-name-lg"><i class="fa-solid fa-location-dot"></i> DATV</a>
+                    <a asp-controller="User" asp-action="Home" class="nav-name-lg"><i class="fa-solid fa-location-dot"></i> DATV</a>
                 </div>
                 <div class="nav-menu">
-                    <a href="" class="nav-link">Home</a>
-                    <a href="" class="nav-link">Travel guides</a>
-                    <a href="" class="nav-link">Hotels</a>
+                    <a asp-controller="User" asp-action="Home" class="nav-link">Home</a>
+                    <a asp-controller="User" asp-action="PlanTrip" class="nav-link">Plan trip</a>
+                    <a asp-controller="User" asp-action="Destination" class="nav-link">Gallery</a>
+                    <a asp-controller="User" asp-action="AboutUs" class="nav-link">AboutUs</a>
                 </div>
             </div>
             <div class="nav-right">
                 <div class="nav-search">
                     <form action="" class="nav-search-form">
                         <i class="fa-solid fa-magnifying-glass nav-search-icon"></i>
-                        <input type="text" name="" id="" class="nav-search-input" placeholder="Explore by destination">
+                        <input type="text" id="search-input" class="nav-search-input" placeholder="Explore by destination">
+                        <div id="suggestions" class="suggestion-list" style="display: none;"></div>
                     </form>
                 </div>
+
                 <div class="nav-log">
                     <partial name="_LoginPartial" />
                 </div>

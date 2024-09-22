@@ -1,0 +1,271 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model TechWiz.Models.Trip
+@{
+    ViewData["Title"] = "Plan - " + Model.TripName;
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+    DateTime startDate = Model.StartTime ?? DateTime.Now; 
+    DateTime endDate = Model.EndTime ?? DateTime.Now; 
+    int totalDays = (endDate - startDate).Days + 1;
+}
+<link rel="stylesheet" href="~/css/UserPlanDetail.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="plan-detail">
+    <div class="plan-detail-main">
+        <div class="plan-content" id="plan-content">
+            <div class="plan-left">
+                <div class="plan-head">
+                    <div class="plan-head-img">
+                        @if (!string.IsNullOrEmpty(ViewBag.FirstGalleryImage))
+                        {
+                            <img class="plan-img" src="~/imageDestinationUser/@ViewBag.FirstGalleryImage" alt="Gallery Image" />
+                        }
+                    </div>
+                    <div class="plan-head-txt">
+                        <p>@Model.TripName</p>
+                    </div>
+                </div>
+
+                <div class="plan-location">
+                    <div class="add-plan-location">
+                        <div class="total-budget">
+                            <strong>Total Budget<p class="plan-card-right-price-curent" data-base-amount="@Model.Budget"></p></strong>
+                        </div>
+                        <select id="add-currency" onchange="changeCurrency(this.value)">
+                            @foreach (var currency in ViewBag.Currency)
+                            {
+                                <option value="@currency.CurrencyCode">@currency.CurrencyCode</option>
+                            }
+                        </select>
+                        <button class="add-plan-location-btn open-form-plan-ui"><i class="fa-solid fa-plus"></i> Add CateGory</button>
+                    </div>
+                    <div class="plan-location-list">
+                        <!-- Card -->
+                        @if (ViewBag.Categories != null)
+                        {
+                            foreach (var category in ViewBag.Categories)
+                            {
+                                <div class="plan-location-card">
+                                    <div class="plan-card-left">
+                                        <h2>@category.CateName</h2>
+                                        <p>@category.Note</p>
+                                    </div>
+                                    <div class="plan-card-right">
+                                        <div class="plan-card-right-price">
+                                            <p class="plan-card-right-price-curent" data-base-amount="@category.Budget"></p>
+                                        </div>
+                                        <div class="plan-card-right-operation">
+                                            <div class="plan-card-edit open-form-plan-ui2">
+                                                <button class="plan-card-edit-btn" onclick="openEditForm(@category.Id, '@category.CateName', '@category.Note', @category.Budget)">
+                                                    <i class="fa-regular fa-pen-to-square"></i> Edit
+                                                </button>
+                                            </div>
+                                            <div class="plan-card-delete">
+                                                <form action="/User/DeleteCategory" method="post" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                                                    <input type="hidden" name="categoryId" value="@category.Id" />
+                                                    <button type="submit" class="plan-card-delete-btn"><i class="fa-regular fa-trash-can"></i> Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <li>No categories available.</li>
+                        }
+                        <!-- Card -->
+                    </div>
+                </div>
+
+                <div class="plan-itinerary">
+                    <div class="plan-itinerary-main">
+                        <div class="itinerary-head">
+                            <div class="itinerary-head-name">
+                                <p>Itinerary</p>
+                            </div>
+                            <div class="itinerary-date">
+                                <div class="date-picker">
+                                    <label for="trip-start" class="date-icon">
+                                        <i class="fa-regular fa-calendar-days"></i>
+                                    </label>
+                                    <input type="text" name="trip-start" id="trip-start" class="trip-date-input" placeholder="Start date" value="@ViewBag.StartDate" readonly>
+                                </div>
+                                <div class="date-picker">
+                                    <label for="trip-end" class="date-icon">
+                                        <i class="fa-regular fa-calendar-days"></i>
+                                    </label>
+                                    <input type="text" name="trip-end" id="trip-end" class="trip-date-input" placeholder="End date" value="@ViewBag.EndDate" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="itinerary-list">
+                            @for (int i = 0; i < totalDays; i++)
+                            {
+                                var currentDate = startDate.AddDays(i);
+                                <div class="itinerary-card">
+                                    <div class="itinerary-card-title">
+                                        <p class="card-date">@currentDate.ToString("dddd, d MMMM")</p> <!-- Format the date -->
+                                        <p class="card-country">No Name</p> <!-- Adjust as needed -->
+                                    </div>
+                                    <div class="itinerary-card-content">
+                                        
+                                            <div id="card-form-add">
+                                                @if (ViewBag.Items != null)
+                                                {
+                                                    bool hasItems = false;
+                                                    foreach (var item in ViewBag.Items)
+                                                    {
+                                                        if (item.Date?.Date == currentDate.Date)
+                                                        {
+                                                            hasItems = true;
+                                                            <div class="card-item-inp-22">
+                                                                <i class="fa-regular fa-note-sticky card-item-inp-2-icon"></i>
+                                                                <input class="inp-2" type="text" value="@item.ItemName" placeholder="Item name" readonly>
+                                                                <input class="inp-2" type="text" value="@item.Note" placeholder="Note item" readonly>
+                                                                <input class="inp-2" type="text" value="@item.category?.CateName" placeholder="None" readonly>
+                                                                <p style="padding:10px" class="plan-card-right-price-curent" data-base-amount="@item.Budget"></p>
+                                                                <form action="/User/DeleteItem" method="post" style="display:inline;">
+                                                                    <input type="hidden" name="itemId" value="@item.Id" />
+                                                                    <button type="submit" class="card-delete-btn2" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                                        <i class="fa-regular fa-trash-can"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        }
+                                                    }
+                                                    if (!hasItems)
+                                                    {
+                                                        <p>No items for this day.</p>
+                                                    }
+                                                }
+                                            </div>
+                                        <form action="/User/AddItem" method="post" id="card-content-form">
+                                            <div class="card-item-inp-1">
+                                                <i class="fa-solid fa-location-dot card-item-inp-2-icon"></i>
+                                                <input type="text" class="inp-1" name="ItemName" placeholder="Enter your item name" required>
+                                                <input type="text" class="inp-1" name="Note" placeholder="Enter your note item" required>
+                                                <input type="number" class="inp-1" name="Budget" placeholder="Enter your budget" required>
+                                                <input class="inp-2" type="hidden" name="Date" value="@currentDate.ToString("yyyy-MM-dd")" required>
+                                                <input class="inp-2" type="hidden" name="tripId" value="@Model.Id" required>
+                                                <select name="CategoryId" >
+                                                    <option value="">None</option>
+                                                    @if (ViewBag.Categories != null)
+                                                    {
+                                                        foreach (var category in ViewBag.Categories)
+                                                        {
+                                                            <option value="@category.Id">@category.CateName</option>
+                                                        }
+                                                    }
+                                                </select>
+                                                <button type="submit" class="card-submit-btn">Add</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="plan-right" id="plan-right">
+                <iframe src="@ViewBag.LinkGPS" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Form-plan-detail-ui -->
+
+<div class="form-plan-detail-ui" id="form-plan-detail-ui">
+    <div class="plan-container">
+        <div class="plan-main" id="plan-main">
+            <div class="plan-close">
+                <i class="fa-regular fa-circle-xmark plan-close-icon"></i>
+            </div>
+            <form action="/User/AddCategory" method="post" id="plan-up" class="plan-main-css">
+                <input type="hidden" name="tripId" value="@Model.Id" />
+                <div class="plan-name">
+                    <p>Category Name</p>
+                </div>
+                <div class="plan-form">
+                    <div class="plan-input">
+                        <input type="text" name="CateName" class="plan-input-css" placeholder="Category Name" required>
+                    </div>
+                    <div class="plan-input">
+                        <input type="text" name="Note" class="plan-input-css" placeholder="Notes" required>
+                    </div>
+                    <div class="plan-input">
+                        <input type="number" name="Budget" class="plan-input-css" placeholder="Budget" step="0.01" required>
+                    </div>
+                </div>
+                <button type="submit" class="plan-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Form chỉnh sửa danh mục -->
+<div class="form-plan-detail-ui" id="form-plan-detail-ui2" style="display: none;">
+    <div class="plan-container">
+        <div class="plan-main" id="plan-main">
+            <div class="plan-close">
+                <i class="fa-regular fa-circle-xmark plan-close-icon2"></i>
+            </div>
+            <form action="/User/EditCategory" method="post" id="edit-category-form" class="plan-main-css">
+                <input type="hidden" name="id" id="edit-category-id" />
+                <div class="plan-name">
+                    <p>Category Edit</p>
+                </div>
+                <div class="plan-form">
+                    <div class="plan-input">
+                        <input type="text" name="CateName" id="edit-category-name" class="plan-input-css" placeholder="Category Name" required>
+                    </div>
+                    <div class="plan-input">
+                        <input type="text" name="Note" id="edit-category-note" class="plan-input-css" placeholder="Notes" required>
+                    </div>
+                    <div class="plan-input">
+                        <input type="number" name="Budget" id="edit-category-budget" class="plan-input-css" placeholder="Budget" step="0.01" required>
+                    </div>
+                </div>
+                <button type="submit" class="plan-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/UserPlanDetail.js" asp-append-version="true"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#trip-start").datepicker();
+        $("#trip-end").datepicker();
+
+
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const currencySelect = document.getElementById('add-currency');
+
+        // Set default currency to the first option
+        if (currencySelect.options.length > 0) {
+            const defaultCurrency = currencySelect.options[0].value;
+            currencySelect.value = defaultCurrency; // Set the select value
+            changeCurrency(defaultCurrency); // Update currency display
+        }
+    });
+
+    function openEditForm(id, cateName, note, budget) {
+        document.getElementById('edit-category-id').value = id;
+        document.getElementById('edit-category-name').value = cateName;
+        document.getElementById('edit-category-note').value = note;
+        document.getElementById('edit-category-budget').value = budget;
+        document.getElementById('form-plan-detail-ui2').style.display = 'block'; // Show the edit form
+    }
+
+</script>

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.RenderTree;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -9,6 +11,7 @@ using TechWiz.Models;
 
 namespace TechWiz.Controllers
 {
+    [Authorize(Roles = "client, admin")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext dbContext;
@@ -24,7 +27,9 @@ namespace TechWiz.Controllers
         [HttpGet]
         public async Task<IActionResult> Home()
         {
+            var user = await userManager.GetUserAsync(User);
             var trips = await dbContext.Trips
+                .Where(t => t.user.Id == user.Id)
         .Include(t => t.destination) 
         .Include(t => t.destination.Galleries) 
         .ToListAsync();
@@ -51,6 +56,7 @@ namespace TechWiz.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public IActionResult AboutUs()
         {
@@ -82,6 +88,48 @@ namespace TechWiz.Controllers
             }
             return View(destination);
         }
+        [HttpGet]
+        public async Task<IActionResult> DetailPlan(int id)
+        {
+			var trip = await dbContext.Trips
+		    .Include(t => t.destination)
+            .ThenInclude(d => d.Galleries)
+            .Include(t => t.user) 
+		    .FirstOrDefaultAsync(t => t.Id == id);
+
+			var currency = await dbContext.Currencies.ToListAsync();
+			ViewBag.Currency = currency;
+
+			ViewBag.Trip = trip;
+            ViewBag.DestinationName = trip.destination.DesName;
+            ViewBag.LinkGPS = trip.destination.link_GPS; 
+            ViewBag.FirstGalleryImage = trip.destination.Galleries.FirstOrDefault()?.link_pic;
+            var categories = await dbContext.Categories
+                .Where(c => c.trip.Id == id) 
+                .ToListAsync();
+
+            ViewBag.Categories = categories;
+            var items = await dbContext.Itemss
+                .Where(i => i.trip.Id == id) 
+                .ToListAsync();
+
+            ViewBag.Items = items;
+            if (trip != null)
+            {
+                ViewBag.StartDate = trip.StartTime?.ToString("yyyy-MM-dd") ?? string.Empty;
+                ViewBag.EndDate = trip.EndTime?.ToString("yyyy-MM-dd") ?? string.Empty;
+            }
+
+            return View(trip);
+        }
+        public async Task<double> GetExchangeRate(string currencyCode)
+        {
+            var currency = await dbContext.Currencies
+                .FirstOrDefaultAsync(c => c.CurrencyCode == currencyCode);
+
+            return currency?.ExchangeRate ?? 1; 
+        }
+
         [HttpGet]
         public JsonResult Search(string query)
         {
@@ -134,6 +182,130 @@ namespace TechWiz.Controllers
 
             return RedirectToAction("Home");
         }
+        [HttpPost]
+        public async Task<IActionResult> AddItem(string? ItemName,string? Note, float? Budget,DateTime? Date,int? CategoryId, int tripId)
+        {
+            var trip = await dbContext.Trips.FindAsync(tripId);
+            var item = new Items
+            {
+                ItemName = ItemName,
+                Note = Note,
+                Budget = Budget,
+                Date = Date ?? DateTime.Now, 
+                category = await dbContext.Categories.FindAsync(CategoryId),
+                trip = await dbContext.Trips.FindAsync(tripId) 
+            };
+
+            // Kiểm tra xem trip có tồn tại không
+            if (item.trip == null)
+            {
+                return NotFound("Trip not found.");
+            }
+            if (item.category != null)
+            {
+                // If there is a category, deduct from its budget
+                item.category.Budget -= Budget ?? 0;
+
+                // Update the category in the database
+                dbContext.Categories.Update(item.category);
+            }
+            else
+            {
+                // If no category, deduct from the trip's budget
+                trip.Budget -= Budget ?? 0;
+
+                // Update the trip in the database
+                dbContext.Trips.Update(trip);
+            }
+
+            // Add the item to the database
+            dbContext.Itemss.Add(item);
+            await dbContext.SaveChangesAsync();
+
+            // Lấy URL để trở về
+            var referer = Request.Headers["Referer"].ToString();
+            return string.IsNullOrEmpty(referer) ? RedirectToAction("Home", "User") : Redirect(referer);
+        }
+        [HttpPost]
+        public IActionResult DeleteItem(int itemId)
+        {
+            var item = dbContext.Itemss.Include(i => i.category).Include(i => i.trip).FirstOrDefault(i => i.Id == itemId);
+            if (item != null)
+            {
+                // If the item has a category, add its budget back to the category
+                if (item.category != null)
+                {
+                    item.category.Budget += item.Budget;
+                    dbContext.Categories.Update(item.category);
+                }
+                else if (item.trip != null)
+                {
+                    // If no category, add the budget back to the trip
+                    item.trip.Budget += item.Budget;
+                    dbContext.Trips.Update(item.trip);
+                }
+
+                // Remove the item from the database
+                dbContext.Itemss.Remove(item);
+                dbContext.SaveChanges();
+            }
+
+            // Redirect back to the previous page
+            var referer = Request.Headers["Referer"].ToString();
+            return string.IsNullOrEmpty(referer) ? RedirectToAction("Home", "User") : Redirect(referer);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCategory(string cateName, string? note, double? budget, int tripId)
+        {
+            if (string.IsNullOrWhiteSpace(cateName))
+            {
+                return BadRequest("Category name is required.");
+            }
+            var trip = await dbContext.Trips.FindAsync(tripId);
+            var category = new Category
+            {
+                CateName = cateName,
+                Note = note,
+                Budget = budget,
+                trip = await dbContext.Trips.FindAsync(tripId)
+            };
+
+            if (category.trip == null)
+            {
+                return NotFound("Trip not found.");
+            }
+
+            dbContext.Categories.Add(category);
+            if (budget.HasValue)
+            {
+                trip.Budget -= budget.Value;
+                dbContext.Trips.Update(trip);
+            }
+            await dbContext.SaveChangesAsync();
+            var referer = Request.Headers["Referer"].ToString();
+            return string.IsNullOrEmpty(referer) ? RedirectToAction("Home", "User") : Redirect(referer);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteCategory(int categoryId)
+        {
+            var category = dbContext.Categories.Include(c => c.trip).FirstOrDefault(c => c.Id == categoryId);
+
+            if (category != null)
+            {
+                // Cộng ngân sách của danh mục vào ngân sách của chuyến đi
+                if (category.trip != null)
+                {
+                    category.trip.Budget += category.Budget; // Cộng ngân sách của danh mục vào ngân sách của chuyến đi
+                }
+
+                // Xóa danh mục
+                dbContext.Categories.Remove(category);
+                dbContext.SaveChanges();
+            }
+            var referer = Request.Headers["Referer"].ToString();
+            return string.IsNullOrEmpty(referer) ? RedirectToAction("Home") : Redirect(referer);
+        }
         [HttpGet]
         public IActionResult GetValidDestinations()
         {
@@ -148,6 +320,29 @@ namespace TechWiz.Controllers
 
             return Json(validDestinations);
         }
+        [HttpPost]
+        public async Task<IActionResult> EditCategory(int id, string cateName, string? note, double? budget)
+        {
+            var category = await dbContext.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            if (string.IsNullOrWhiteSpace(cateName))
+            {
+                return BadRequest("Category name is required.");
+            }
+
+            category.CateName = cateName;
+            category.Note = note;
+            category.Budget = budget;
+
+            await dbContext.SaveChangesAsync();
+            var referer = Request.Headers["Referer"].ToString();
+            return string.IsNullOrEmpty(referer) ? RedirectToAction("Home") : Redirect(referer);
+        }
+
 
         [HttpPost]
         public IActionResult ContactUs(SendMailDto sendMailDto)

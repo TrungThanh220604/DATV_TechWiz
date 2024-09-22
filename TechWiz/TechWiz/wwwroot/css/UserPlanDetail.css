@@ -1,0 +1,482 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    background-image: url('https://nextvacay.com/wp-content/uploads/2022/07/KW-why-travel-is-important.jpg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/* Form-plan-detail-ui */
+.form-plan-detail-ui {
+    z-index: 100;
+    position: fixed;
+    overflow: hidden;
+    height: 100%;
+    left: 0;
+    outline: 0;
+    top: 0;
+    width: 100%;
+    transition: opacity .15s linear;
+    transform: none;
+    background-color: #21252983;
+    display: none;
+}
+
+    .form-plan-detail-ui .plan-container {
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    .form-plan-detail-ui .plan-main {
+        background-color: #fff;
+        border-radius: 24px;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .2);
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 3rem;
+        position: relative;
+        width: 450px;
+        overflow: hidden;
+    }
+
+        .form-plan-detail-ui .plan-main .plan-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1rem;
+        }
+
+            .form-plan-detail-ui .plan-main .plan-close .plan-close-icon {
+                font-size: 1.8rem;
+                cursor: pointer;
+                border-radius: 50%;
+                background-color: #fff;
+                color: #6c757d;
+            }
+
+                .form-plan-detail-ui .plan-main .plan-close .plan-close-icon:hover {
+                    background-color: #dee2e6;
+                }
+
+.plan-main-css .plan-name {
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: -.03em;
+    line-height: 1 !important;
+    font-weight: bold;
+    padding: 20px 0;
+}
+
+.plan-main-css .plan-form .plan-input .plan-input-css {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: none;
+    height: 56px;
+    padding: 28px 16px 28px 16px;
+    text-overflow: ellipsis;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 10px;
+    user-select: none;
+}
+
+.plan-main-css .plan-submit {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6c757d;
+    user-select: none;
+}
+
+.plan-main-css .not-plan {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+    font-size: 0.9rem;
+    color: #6c757d;
+    user-select: none;
+}
+
+    .plan-main-css .plan-submit:hover, .plan-main-css .not-plan:hover {
+        color: #3f52e3;
+    }
+/* End */
+
+
+
+
+
+/* Plan-detail */
+
+.plan-detail {
+    width: 100%;
+}
+
+.plan-detail-main {
+    padding-top: 60px;
+    width: 100%;
+}
+
+    .plan-detail-main .plan-content {
+        position: relative;
+        display: flex;
+        width: 100%;
+        padding-bottom: 30px;
+        background-color: #fff;
+    }
+
+.plan-detail .plan-left {
+    width: 60%;
+    background-color: #fff;
+}
+
+    .plan-detail .plan-left .plan-head {
+        position: relative;
+        width: 100%;
+        height: 330px;
+    }
+
+        .plan-detail .plan-left .plan-head .plan-head-img,
+        .plan-detail .plan-left .plan-head .plan-head-img .plan-img {
+            width: 100%;
+            height: 280px;
+        }
+
+        .plan-detail .plan-left .plan-head .plan-head-txt {
+            position: absolute;
+            width: 70%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            height: 100px;
+            bottom: 0;
+            left: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 2rem;
+            color: #212529;
+            border-radius: 10px;
+        }
+
+.plan-detail .plan-location {
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+    .plan-detail .plan-location .add-plan-location {
+        width: 100%;
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+        .plan-detail .plan-location .add-plan-location #add-currency {
+            padding: 16px;
+            font-size: 1rem;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+.plan-location .add-plan-location .add-plan-location-btn {
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 16px;
+    background-color: #f75940;
+    border-color: #f75940;
+    border-width: 1px;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .plan-location .add-plan-location .add-plan-location-btn:hover {
+        background-color: #ca4834;
+    }
+
+.plan-location .plan-location-list {
+    width: 100%;
+}
+
+    .plan-location .plan-location-list .plan-location-card {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: #f3f4f5;
+        padding: 10px 20px;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+.plan-location-list .plan-location-card .plan-card-right .plan-card-right-operation {
+    display: flex;
+}
+
+.plan-card-right .plan-card-right-operation .plan-card-edit .plan-card-edit-btn {
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 16px;
+    border-width: 1px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    min-width: 110px;
+}
+
+.plan-location-card .plan-card-left {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.plan-card-right .plan-card-right-operation .plan-card-edit .plan-card-edit-btn:hover,
+.plan-card-right .plan-card-right-operation .plan-card-delete .plan-card-delete-btn:hover {
+    background-color: #abacad;
+}
+
+.plan-card-right .plan-card-right-operation .plan-card-delete .plan-card-delete-btn {
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 16px;
+    border-width: 1px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    min-width: 110px;
+    margin-left: 5px;
+}
+
+.plan-card-right .plan-card-right-price {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #f75940;
+}
+
+.plan-itinerary {
+    width: 100%;
+    padding-top: 50px;
+}
+
+    .plan-itinerary .plan-itinerary-main {
+        width: 90%;
+        margin: auto;
+        border-top: 1px solid #6c757d;
+        padding-top: 50px;
+    }
+
+.plan-itinerary-main .itinerary-head {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+
+    .plan-itinerary-main .itinerary-head .itinerary-head-name {
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+.itinerary-list .itinerary-card {
+    border-bottom: 1px solid #abacad;
+}
+
+
+.itinerary-list .itinerary-card-title {
+    padding: 20px;
+    cursor: pointer;
+}
+
+    .itinerary-list .itinerary-card-title .card-date {
+        font-weight: bold;
+        font-size: 1.5rem;
+        user-select: none;
+    }
+
+    .itinerary-list .itinerary-card-title .card-country {
+        font-weight: bold;
+        font-size: 1rem;
+        color: #6c757d;
+        user-select: none;
+    }
+
+.itinerary-card-content {
+    padding: 10px 20px;
+    display: none;
+}
+
+    .itinerary-card-content .card-item-inp-2-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 10px;
+        background-color: #a7a7a7;
+        color: #fff;
+        border-radius: 50px;
+        left: -15px;
+    }
+
+    .itinerary-card-content .card-item-inp-2,
+    .itinerary-card-content .card-item-inp-1 {
+        margin-bottom: 20px;
+        display: flex;
+        position: relative;
+    }
+
+        .itinerary-card-content .card-item-inp-2 .inp-2 {
+            width: 100%;
+            padding: 15px 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .itinerary-card-content .card-item-inp-2 .card-delete-btn {
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+            .itinerary-card-content .card-item-inp-2 .card-delete-btn:hover {
+                color: #ca4834;
+            }
+
+    .itinerary-card-content .card-item-inp-22,
+    .itinerary-card-content .card-item-inp-1 {
+        margin-bottom: 20px;
+        display: flex;
+        position: relative;
+    }
+
+        .itinerary-card-content .card-item-inp-22 .inp-2 {
+            width: 100%;
+            padding: 15px 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .itinerary-card-content .card-item-inp-22 .card-delete-btn2 {
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+            .itinerary-card-content .card-item-inp-22 .card-delete-btn2:hover {
+                color: #ca4834;
+            }
+
+        .itinerary-card-content .card-item-inp-1 .inp-1 {
+            width: 100%;
+            padding: 15px 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .itinerary-card-content .card-item-inp-1 .card-add-btn {
+            font-size: 1rem;
+            padding: 15px;
+            border-width: 1px;
+            border-radius: 50px;
+            background-color: #dfdfdf;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .itinerary-card-content .card-item-inp-1 .card-submit-btn {
+            font-size: 1rem;
+            padding: 15px;
+            border-width: 1px;
+            border-radius: 50px;
+            background-color: #dfdfdf;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+            .itinerary-card-content .card-item-inp-1 .card-add-btn:hover,
+            .itinerary-card-content .card-item-inp-1 .card-submit-btn:hover {
+                background-color: #a7a7a7;
+            }
+
+.plan-detail .plan-right {
+    width: 40%;
+}
+
+    .plan-detail .plan-right iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+.itinerary-date {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    margin-left: 30px;
+}
+
+    .itinerary-date .date-picker {
+        width: 48%;
+        position: relative;
+    }
+
+        .itinerary-date .date-picker .date-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            left: 10px;
+            color: #696969;
+        }
+
+    .itinerary-date .trip-date-input {
+        padding: 15px;
+        padding-left: 30px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+        .itinerary-date .trip-date-input::placeholder {
+            color: #696969;
+        }
+/* End Plan-detail */
+

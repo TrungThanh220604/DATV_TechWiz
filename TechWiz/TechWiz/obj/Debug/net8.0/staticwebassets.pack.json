@@ -13,8 +13,24 @@
       "PackagePath": "staticwebassets\\css\\AdminLayout.css"
     },
     {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\Currencies.css",
+      "PackagePath": "staticwebassets\\css\\Currencies.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\DestinationDetail.css",
+      "PackagePath": "staticwebassets\\css\\DestinationDetail.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\Destinations.css",
+      "PackagePath": "staticwebassets\\css\\Destinations.css"
+    },
+    {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\PlanTrip.css",
       "PackagePath": "staticwebassets\\css\\PlanTrip.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\Trips.css",
+      "PackagePath": "staticwebassets\\css\\Trips.css"
     },
     {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\UserDestinationDetail.css",
@@ -31,6 +47,14 @@
     {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\UserLayout.css",
       "PackagePath": "staticwebassets\\css\\UserLayout.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\UserPlanDetail.css",
+      "PackagePath": "staticwebassets\\css\\UserPlanDetail.css"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\Users.css",
+      "PackagePath": "staticwebassets\\css\\Users.css"
     },
     {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\css\\aboutUs.css",
@@ -227,6 +251,14 @@
     {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\UserLayout.js",
       "PackagePath": "staticwebassets\\js\\UserLayout.js"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\UserPlanDetail.js",
+      "PackagePath": "staticwebassets\\js\\UserPlanDetail.js"
+    },
+    {
+      "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\action.js",
+      "PackagePath": "staticwebassets\\js\\action.js"
     },
     {
       "Id": "D:\\TechWiz\\TechWiz\\TechWiz\\wwwroot\\js\\site.js",

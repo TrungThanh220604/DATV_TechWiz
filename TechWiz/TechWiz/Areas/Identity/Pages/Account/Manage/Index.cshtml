@@ -6,6 +6,11 @@
 
 }
 <h3>@ViewData["Title"]</h3>
+@if (!string.IsNullOrEmpty(ViewData["ProfilePicture"]?.ToString()))
+{
+    <img src="@ViewData["ProfilePicture"]" alt="Profile Picture" class="img-fluid rounded-circle" />
+}
+
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
     <div class="col-md-6">
@@ -20,8 +25,26 @@
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.link_avatar" type="file" class="form-control" />
+                <label asp-for="Input.link_avatar" class="form-label"></label>
+                <span asp-validation-for="Input.link_avatar" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <select asp-for="Input.PreferredCurrencyId" class="form-control">
+                    <option value="">Select Currency</option>
+                    @foreach (var currency in Model.Currencies) // Assuming you pass the list of currencies from the controller
+                    {
+                        <option value="@currency.Id">@currency.CurrencyCode</option>
+                    }
+                </select>
+                <label asp-for="Input.PreferredCurrencyId" class="form-label">Preferred Currency</label>
+                <span asp-validation-for="Input.PreferredCurrencyId" class="text-danger"></span>
+            </div>
+
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
         </form>
+
     </div>
 </div>
 

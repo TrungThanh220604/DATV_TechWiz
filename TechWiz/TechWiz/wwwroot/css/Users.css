@@ -1,0 +1,203 @@
+﻿.table-list {
+    overflow-x: auto;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table.dataTable.no-footer {
+    border: none;
+}
+
+#example {
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 20px;
+    overflow-x: auto;
+}
+
+    #example tbody tr:nth-child(odd), #example tbody tr:nth-child(even) {
+        background-color: var(--light);
+    }
+
+.dataTables_wrapper .dataTables_filter {
+    float: left;
+    margin: 10px 0 10px 0;
+}
+
+    .dataTables_wrapper .dataTables_filter input {
+        color: var(--dark);
+    }
+
+#example thead th {
+    text-align: left;
+    border-bottom: 1px solid var(--dark);
+    padding-bottom: 10px;
+}
+
+#example tbody tr:hover {
+    background: var(--grey);
+}
+
+#example tr td {
+    padding: 16px 0;
+}
+
+    #example tr td i {
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        #example tr td i.bx-edit:hover {
+            color: var(--yellow);
+        }
+
+        #example tr td i.bx-detail:hover {
+            color: var(--green);
+        }
+
+        #example tr td i.bx-trash:hover {
+            color: var(--red);
+        }
+
+    #example tr td a {
+        text-decoration: underline;
+        color: var(--dark);
+    }
+
+    #example tr td:first-child {
+        display: flex;
+        align-items: center;
+        grid-gap: 12px;
+        padding-left: 6px;
+    }
+
+    #example tr td img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+.btn-add {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 5px;
+    background: var(--blue);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 10px;
+    font-weight: 400;
+}
+
+#form-action {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: var(--light);
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px;
+    height: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-main {
+    position: relative;
+}
+
+.form-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+    .form-close i {
+        font-size: 25px;
+        font-weight: 600;
+        border: 2px solid var(--dark);
+        color: var(--dark);
+        border-radius: 50%;
+        transition: 0.3s;
+    }
+
+        .form-close i:hover {
+            background-color: #929599;
+        }
+/* Hide both forms initially */
+#form-action-add, #form-action-edit {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-add, .form-edit {
+    text-align: center;
+    font-family: var(--lato);
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 30px 0;
+}
+
+    .form-add .form-title,
+    .form-edit .form-title {
+        margin-bottom: 20px;
+        color: var(--dark);
+    }
+
+    .form-add .form-info .form-input input,
+    .form-edit .form-info .form-input input {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        box-shadow: none;
+        height: 56px;
+        padding: 22px 16px 22px 16px;
+        text-overflow: ellipsis;
+        font-size: 1rem;
+        width: 100%;
+        margin-bottom: 10px;
+        user-select: none;
+    }
+
+    .form-add .form-submit,
+    .form-edit .form-submit {
+        background-color: #4d504e;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+        .form-add .form-submit:hover,
+        .form-edit .form-submit:hover {
+            background-color: #2d312e;
+        }
+
+body.modal-open {
+    overflow: hidden;
+}

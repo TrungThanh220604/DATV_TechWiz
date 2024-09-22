@@ -1,0 +1,60 @@
+﻿@* @model IEnumerable<TechWiz.Controllers.AdminController.UserViewModel> *@
+@{
+	int index = 1;
+}
+
+<link rel="stylesheet" href="~/css/Users.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+<div class="head-title">
+	<div class="left">
+		<h1>Account Management</h1>
+		<ul class="breadcrumb">
+			<li>
+				<a href="#">Account Management</a>
+			</li>
+			<li><i class='bx bx-chevron-right'></i></li>
+			<li>
+				<a class="active" href="#">Home</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="table-list">
+	<table id="example">
+		<thead>
+			<tr>
+				<th>Stt</th>
+				<th>User</th>
+				<th>Email</th>
+				<th>Role</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var user in Model)
+			{
+				<tr>
+					<td>@index</td>
+					<td>
+						<img src="~/imageAdmin/@user.LinkAvatar" alt="User Image">
+						<p>@user.UserName</p>
+					</td>
+					<td>@user.Email</td>
+					<td>@user.Roles</td>
+				</tr>
+				index++;
+			}
+			
+		</tbody>
+	</table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$('#example').DataTable({
+			"lengthChange": false
+		});
+	});
+</script>

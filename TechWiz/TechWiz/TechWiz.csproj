@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\imageAdmin\" />
+    <Folder Include="wwwroot\images\profiles\" />
   </ItemGroup>
 
 </Project>
